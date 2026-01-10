@@ -44,9 +44,22 @@ public final class UseListsAndMaps {
          * element of the first list. You can not use any "magic number".
          * (Suggestion: use a temporary variable)
          */
+        final int element = arrayList.getLast();
+        arrayList.set(arrayList.size() - 1, arrayList.getFirst());
+        arrayList.set(0, element);
+
         /*
          * 4) Using a single for-each, print the contents of the arraylist.
          */
+        final var builder = new StringBuilder();
+        builder.append("arrayList's elements are: ");
+        for (final Integer i : linkedList) {
+            builder.append(i).append(", ");
+        }
+        if (!builder.isEmpty()) {
+            builder.delete(builder.length() - 2, builder.length());
+        }
+
         /*
          * 5) Measure the performance of inserting new elements in the head of
          * the collection: measure the time required to add 100.000 elements as
