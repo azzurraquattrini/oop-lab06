@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Example class using {@link List} and {@link Map}.
@@ -13,6 +14,7 @@ public final class UseListsAndMaps {
 
     private static final int START = 1000;
     private static final int END = 2000;
+    private static final int ELEMENTS = 100000;
 
     private UseListsAndMaps() {
     }
@@ -67,6 +69,28 @@ public final class UseListsAndMaps {
          * using the previous lists. In order to measure times, use as example
          * TestPerformance.java.
          */
+        long time = System.nanoTime();
+        for (int i = 0; i < ELEMENTS; i++) {
+            arrayList.addFirst(i);
+        }
+        time = System.nanoTime() - time;
+        var millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println("Inserting " + ELEMENTS +
+                           " elements in the head of arrayList took " +
+                            time + " ns ("
+                            + millis + " ms)");
+        
+        time = System.nanoTime();
+        for (int i = 0; i < ELEMENTS; i++) {
+            linkedList.addFirst(i);
+        }
+        time = System.nanoTime() - time;
+        millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println("Inserting " + ELEMENTS +
+                           " elements in the head of linkedList took " +
+                            time + " ns ("
+                            + millis + " ms)");
+        
         /*
          * 6) Measure the performance of reading 1000 times an element whose
          * position is in the middle of the collection for both ArrayList and
