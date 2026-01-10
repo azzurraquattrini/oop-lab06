@@ -15,6 +15,7 @@ public final class UseListsAndMaps {
     private static final int START = 1000;
     private static final int END = 2000;
     private static final int ELEMENTS = 100000;
+    private static final int READING = 1000;
 
     private UseListsAndMaps() {
     }
@@ -97,6 +98,28 @@ public final class UseListsAndMaps {
          * LinkedList, using the collections of point 5. In order to measure
          * times, use as example TestPerformance.java.
          */
+        time = System.nanoTime();
+        for (int i = 0; i < READING; i++) {
+            arrayList.get(arrayList.size()/2);
+        }
+        time = System.nanoTime() - time;
+        millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println("Reading arrayList's middle element " +
+                            READING + " times took " + 
+                            time + " ns ("
+                            + millis + " ms)");
+
+        time = System.nanoTime();
+        for (int i = 0; i < READING; i++) {
+            linkedList.get(linkedList.size()/2);
+        }
+        time = System.nanoTime() - time;
+        millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println("Reading linkedList's middle element " +
+                            READING + " times took " + 
+                            time + " ns ("
+                            + millis + " ms)");
+
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
